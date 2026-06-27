@@ -6,8 +6,7 @@
       "use": "@vercel/node",
       "config": {
         "includeFiles": [
-          "public/**",
-          "node_modules/**"
+          "public/**"
         ]
       }
     }
@@ -15,7 +14,6 @@
   "routes": [
     { "src": "/api/(.*)", "dest": "api/index.js" },
     { "src": "/uploads/(.*)", "dest": "api/index.js" },
-    { "src": "/fonts/(.*)", "dest": "api/index.js" },
-    { "src": "/(.*)", "dest": "api/index.js" }
+    { "src": "/(.*)", "dest": "public/$1" }
   ]
 }
