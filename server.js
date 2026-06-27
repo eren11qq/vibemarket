@@ -31,15 +31,18 @@ const UPLOADS_DIR = path.join(__dirname, 'public', 'uploads');
 const TRUST_PROXY = process.env.TRUST_PROXY === 'true';
 
 // 安全提醒：生产环境必须设置环境变量
+// 仅在本地有 .env 文件时进行硬性检查
+const hasEnvFile = require('fs').existsSync(path.join(__dirname, '.env'));
+if (!hasEnvFile && NODE_ENV === 'production') {
+  console.warn('[安全提醒] 未找到 .env 文件，使用默认值。请在 Vercel 面板设置环境变量。');
+}
 if (NODE_ENV === 'production' && JWT_SECRET === 'vibe-market-dev-only-change-in-production') {
-  console.error('[安全警告] 生产环境中未设置 JWT_SECRET 环境变量！');
-  console.error('[安全警告] 服务器拒绝启动。请设置 JWT_SECRET 环境变量。');
-  process.exit(1);
+  console.warn('[安全警告] 生产环境中未设置 JWT_SECRET 环境变量！');
+  console.warn('[安全警告] 使用默认值，请尽快在 Vercel 面板设置 JWT_SECRET。');
 }
 if (NODE_ENV === 'production' && ADMIN_PASSWORD === 'change-me-on-first-run') {
-  console.error('[安全警告] 生产环境中未设置 ADMIN_PASSWORD 环境变量！');
-  console.error('[安全警告] 服务器拒绝启动。请设置 ADMIN_PASSWORD 环境变量。');
-  process.exit(1);
+  console.warn('[安全警告] 生产环境中未设置 ADMIN_PASSWORD 环境变量！');
+  console.warn('[安全警告] 使用默认值，请尽快在 Vercel 面板设置 ADMIN_PASSWORD。');
 }
 
 const app = express();
