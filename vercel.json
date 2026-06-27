@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "public/**",
+          "node_modules/**"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "api/index.js" },
+    { "src": "/uploads/(.*)", "dest": "api/index.js" },
+    { "src": "/fonts/(.*)", "dest": "api/index.js" },
+    { "src": "/(.*)", "dest": "api/index.js" }
+  ]
+}

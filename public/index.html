@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Vibe Market — 发现最好的 Vibe 设计</title>
+<meta name="description" content="Vibe Market 是一个设计作品交易平台，发现最好的视觉设计、数字产品和创意灵感。支持作品发布、创作者关注、闲鱼安全交易。">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta property="og:title" content="Vibe Market — 发现最好的 Vibe 设计">
+<meta property="og:description" content="设计作品交易平台，发现最好的视觉设计、数字产品和创意灵感。">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="fonts/inter.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<noscript>
+  <div style="background:#ff4757;color:#fff;text-align:center;padding:16px 24px;font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.5">
+    ⚠️ Vibe Market 需要启用 JavaScript 才能正常运行。请在浏览器设置中开启 JavaScript。
+  </div>
+</noscript>
+
+<!-- 跳过导航链接 (无障碍) -->
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:16px;z-index:9999;padding:8px 16px;background:#000;color:#fff;border-radius:8px;font-size:14px;text-decoration:none">跳到主要内容</a>
+
+<nav class="nav" role="navigation" aria-label="主导航"><div class="nav-inner">
+<a href="/" class="nav-logo" aria-label="Vibe Market"><span class="nav-logo-text">Vibe Market</span></a>
+
+<!-- ExpandableTabs 胶囊 -->
+<div class="nav-pill">
+<button class="nav-tab active" onclick="selectTab(this,'/')">
+<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+<span class="tab-label">首页</span>
+</button>
+<button class="nav-tab" onclick="selectTab(this,'/weekly-best')">
+<svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 6 9 6 9z"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 18 9 18 9z"/><path d="M4 22h16"/><path d="M10 22V2h4v20"/></svg>
+<span class="tab-label">每周最佳</span>
+</button>
+<button class="nav-tab" onclick="selectTab(this,'/works')">
+<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h18"/></svg>
+<span class="tab-label">作品列表</span>
+</button>
+<button class="nav-tab" onclick="selectTab(this,'/pricing')">
+<svg viewBox="0 0 24 24"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+<span class="tab-label">定价</span>
+</button>
+<span class="nav-sep"></span>
+<button class="nav-tab" onclick="selectTab(this,'/creators')">
+<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+<span class="tab-label">创作者主页</span>
+</button>
+<button class="nav-tab" onclick="selectTab(this,'/my-works')">
+<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+<span class="tab-label">我的作品</span>
+</button>
+<button class="nav-tab" onclick="selectTab(this,'/upload')">
+<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+<span class="tab-label">上传作品</span>
+</button>
+<button class="nav-tab" onclick="selectTab(this,'/help')">
+<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+<span class="tab-label">帮助</span>
+</button>
+<button class="nav-tab" onclick="selectTab(this,'/feedback')">
+<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+<span class="tab-label">意见箱</span>
+</button>
+<button class="nav-tab nav-tab-admin" onclick="selectTab(this,'/admin')">
+<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+<span class="tab-label">管理</span>
+</button>
+</div>
+
+<div class="nav-right">
+<div class="nav-search-wrap">
+<button class="nav-search-btn" onclick="toggleSearch()" aria-label="搜索作品">
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+</button>
+<input class="nav-search-input" id="navSearch" type="text" placeholder="搜索作品..." aria-label="搜索输入框">
+</div>
+<button class="nav-btn" onclick="var t=document.querySelector('.nav-tab:nth-child(3)');if(t)selectTab(t,'/works')">浏览作品</button>
+<a href="javascript:void(0)" class="nav-btn nav-btn-secondary" onclick="showLoginModal()">登录</a>
+</div>
+</div></nav>
+
+<main role="main" id="main-content">
+<section class="hero active">
+<div class="hero-left">
+<h1>发现最好的<br>Vibe 设计</h1>
+<p class="hero-sub">让每个人都能参与其中。上传你的 Vibe 作品，让灵感产生价值，通过闲鱼安全交易。</p>
+<a href="javascript:void(0)" class="hero-cta" onclick="goToUpload()">加入我们</a>
+</div>
+<div class="hero-right">
+<div class="showcase-card">
+<div class="sc-header" onclick="toggleCard(this)">
+<div class="sc-left"><span class="showcase-num">01</span><div class="showcase-content"><h4>发现优秀设计</h4></div></div>
+<svg class="sc-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="sc-body"><p>浏览社区精选作品，从视觉设计到数字产品，找到你需要的灵感。</p></div>
+</div>
+<div class="showcase-card">
+<div class="sc-header" onclick="toggleCard(this)">
+<div class="sc-left"><span class="showcase-num">02</span><div class="showcase-content"><h4>展示你的创作</h4></div></div>
+<svg class="sc-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="sc-body"><p>上传你的设计作品，让更多人看到你的才华。支持图片、视频和 HTML 交互展示。</p></div>
+</div>
+<div class="showcase-card">
+<div class="sc-header" onclick="toggleCard(this)">
+<div class="sc-left"><span class="showcase-num">03</span><div class="showcase-content"><h4>安全交易保障</h4></div></div>
+<svg class="sc-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="sc-body"><p>通过闲鱼平台安全交易，买家放心、卖家省心。每一次交易都有保障。</p></div>
+</div>
+<div class="showcase-card">
+<div class="sc-header" onclick="toggleCard(this)">
+<div class="sc-left"><span class="showcase-num">04</span><div class="showcase-content"><h4>每周最佳评选</h4></div></div>
+<svg class="sc-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="sc-body"><p>每周由社区投票选出最佳作品，登上每周最佳榜单，获得更多曝光机会。</p></div>
+</div>
+</section>
+
+<!-- 第二屏: 每周最佳 -->
+<section class="weekly-section reveal">
+<div class="wb-header">
+<div><div class="wb-title"><span class="wb-brand">Vibe</span> 每周精选</div><p class="wb-sub">每周由社区热度自动评选的顶尖设计作品</p></div>
+</div>
+<div class="weekly-marquee">
+<div class="weekly-track reveal-stagger" id="weeklyTrack">
+</div>
+</div>
+</section>
+
+<!-- 第三屏: 作品列表 -->
+<section class="works-section reveal">
+<div class="section-inner">
+<div class="ws-header">
+<div><div class="ws-title">作品列表</div><p class="ws-sub">发现社区里优秀的设计作品</p></div>
+</div>
+<div class="ws-toolbar">
+<div class="ws-search-wrap"><input type="text" class="ws-search-input" placeholder="搜索作品..." oninput="searchWorks()"></div>
+<select class="ws-sort-select" onchange="searchWorks()">
+<option value="newest">最新发布</option>
+<option value="oldest">最早发布</option>
+<option value="popular">最多点赞</option>
+<option value="price_asc">价格从低</option>
+<option value="price_desc">价格从高</option>
+</select>
+</div>
+<div class="ws-cats">
+<span class="ws-cat active" onclick="filterWorks(this,'all')">全部</span>
+<span class="ws-cat" onclick="filterWorks(this,'visual')">视觉设计</span>
+<span class="ws-cat" onclick="filterWorks(this,'digital-product')">数字产品</span>
+<span class="ws-cat" onclick="filterWorks(this,'inspiration')">灵感展示</span>
+</div>
+<div class="works-grid reveal-stagger" id="worksGrid">
+</div>
+</div>
+</section>
+
+<!-- 定价页面 -->
+<section class="pricing-section reveal">
+<div class="section-inner">
+<div class="ps-header">
+<div class="ps-title">定价方案</div>
+<p class="ps-sub">选择适合你的方案，开启创作之旅</p>
+</div>
+<!-- 免费卡片 -->
+<div class="ps-free-row">
+<div class="pricing-free-card">
+<span class="pfc-label">🎁 免费</span>
+<span class="pfc-price">¥0</span>
+<span class="pfc-count">1 个作品名额</span>
+<span class="pfc-action" onclick="goToUpload()">开始体验</span>
+</div>
+</div>
+<div class="pricing-grid reveal-stagger">
+<!-- 🥉 入门 -->
+<div class="pricing-card">
+<div class="pc-emoji">🥉</div>
+<div class="pc-name">入门</div>
+<div class="pc-price">¥9.9</div>
+<div class="pc-price-sub">/月</div>
+<div class="pc-count">5 个作品</div>
+<div class="pc-feature">新手试水，低成本开始</div>
+<div class="pc-btn-wrapper" data-tier="SPRT-1" data-tier-name="入门" data-price="9.9"></div>
+</div>
+<!-- 🥈 进阶（推荐） -->
+<div class="pricing-card">
+<div class="pc-badge">⭐ 推荐</div>
+<div class="pc-emoji">🥈</div>
+<div class="pc-name">进阶</div>
+<div class="pc-price">¥29.9</div>
+<div class="pc-price-sub">/月</div>
+<div class="pc-count">20 个作品</div>
+<div class="pc-feature">活跃创作者首选</div>
+<div class="pc-btn-wrapper" data-tier="SPRT-2" data-tier-name="进阶" data-price="29.9"></div>
+</div>
+<!-- 🥇 专业 -->
+<div class="pricing-card">
+<div class="pc-emoji">🥇</div>
+<div class="pc-name">专业</div>
+<div class="pc-price">¥69.9</div>
+<div class="pc-price-sub">/月</div>
+<div class="pc-count">60 个作品</div>
+<div class="pc-feature">工作室级批量上架</div>
+<div class="pc-btn-wrapper" data-tier="SPRT-3" data-tier-name="专业" data-price="69.9"></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 作品详情弹窗 (Overlay) -->
+<section class="work-detail-section" id="workDetailSection">
+<div class="wd-overlay" onclick="closeWorkDetail()"></div>
+<div class="wd-detail-panel">
+
+<!-- 顶部返回 -->
+<div class="wd-backbar">
+  <button class="wd-back-btn" onclick="closeWorkDetail()">
+    <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    返回
+  </button>
+</div>
+
+<!-- 主双栏 -->
+<div class="wd-main">
+
+<!-- 左栏：可下滑小正方形卡片流 -->
+<div class="wd-preview">
+  <!-- 卡片 1 -->
+  <div class="wd-card-group">
+  <div class="wd-card-author" id="wdAuthorLabel1">✧ Manu</div>
+  <div class="wd-preview-card">
+    <div class="wd-corner-right"></div>
+    <div class="wd-preview-inner">
+      <!-- 顶部全局导航栏 -->
+      <div class="wd-pnav">
+        <div class="wd-pnav-left"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Vibe</div>
+        <div class="wd-pnav-center">
+          <span class="wd-pnav-link">首页</span>
+          <span class="wd-pnav-link">功能 <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          <span class="wd-pnav-link">定价</span>
+          <span class="wd-pnav-link">关于</span>
+        </div>
+        <span class="wd-pnav-right">联系我们</span>
+      </div>
+      <!-- Hero 完全居中 -->
+      <div class="wd-phero">
+        <div class="wd-phero-badge" id="wdPBadge1">✨ 精选 <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        <div class="wd-phero-title">智能<br><span class="hl" id="wdPTitle1">设计交易</span></div>
+        <p class="wd-phero-desc" id="wdPDesc1">作品描述文字</p>
+        <span class="wd-phero-btn"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>立即体验</span>
+        <div class="wd-phero-pattern"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <!-- 信任条 -->
+      <div class="wd-ptrust">
+        <div class="wd-ptrust-text"><div class="big" id="wdPTrustBig1">200+</div><div class="hl" id="wdPTrustHL1">创作者信赖</div></div>
+        <div class="wd-ptrust-logos"><div class="wd-ptrust-logo">LOGO</div><div class="wd-ptrust-logo">BRAND</div><div class="wd-ptrust-logo">DESIGN</div><div class="wd-ptrust-logo">CREAT</div></div>
+      </div>
+      <!-- 功能板块标题 -->
+      <div class="wd-pfeatures">
+        <div class="wd-pfeatures-top"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h18"/></svg>FEATURES</div>
+        <div class="wd-pfeatures-title"><span class="hl" id="wdPFeatTitle">高品质</span> 设计平台</div>
+        <p class="wd-pfeatures-desc" id="wdPFeatDesc">连接创作者与需求方</p>
+        <div class="wd-pfeatures-pattern"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- 卡片 2 -->
+  <div class="wd-card-group">
+  <div class="wd-card-author" id="wdAuthorLabel2">✧ Manu</div>
+  <div class="wd-preview-card">
+    <div class="wd-corner-right"></div>
+    <div class="wd-preview-inner">
+      <div class="wd-pnav">
+        <div class="wd-pnav-left"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Vibe</div>
+        <div class="wd-pnav-center">
+          <span class="wd-pnav-link">首页</span>
+          <span class="wd-pnav-link">功能 <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          <span class="wd-pnav-link">定价</span>
+          <span class="wd-pnav-link">关于</span>
+        </div>
+        <span class="wd-pnav-right">联系我们</span>
+      </div>
+      <div class="wd-pfeatures">
+        <div class="wd-pfeatures-top"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h18"/></svg>EXPLORE</div>
+        <div class="wd-pfeatures-title"><span class="hl" id="wdPFeatTitle2">发现更多</span> 设计作品</div>
+        <p class="wd-pfeatures-desc" id="wdPFeatDesc2">浏览完整作品集</p>
+        <div class="wd-pfeatures-pattern"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="wd-ptrust" style="border-top:1px solid #F1F5F9;">
+        <div class="wd-ptrust-text"><div class="big" id="wdPTrustBig2">500+</div><div class="hl" id="wdPTrustHL2">设计作品</div></div>
+        <div class="wd-ptrust-logos"><div class="wd-ptrust-logo">LOGO</div><div class="wd-ptrust-logo">BRAND</div><div class="wd-ptrust-logo">DESIGN</div><div class="wd-ptrust-logo">CREAT</div></div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- 右栏：粘性边栏 -->
+<div class="wd-sidebar">
+  <div class="wd-info-wrap">
+    <div class="wd-info-source">by <strong id="wdInfoAuthor" style="color:rgba(255,255,255,.45)">创作者</strong></div>
+    <h1 class="wd-info-title" id="wdInfoTitle">作品标题</h1>
+    <p class="wd-info-desc" id="wdInfoDesc">作品描述文字，展示设计理念与创作思路。</p>
+    <div class="wd-info-tags" id="wdInfoTags"></div>
+    <div class="wd-info-actions">
+      <div class="wd-info-actions-row">
+        <a class="wd-info-btn wd-info-btn-white" id="wdInfoBuy" href="#" target="_blank">🛒 去闲鱼购买</a>
+        <div class="wd-like-btn" id="wdInfoLike">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="wd-like-count wc-like-count" id="wdInfoLikeCount">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="wd-info-detail" id="wdInfoDetail">详细介绍内容加载中...</div>
+    <div class="wd-info-extra" id="wdInfoExtra">相关标签 · 版权信息 · 更多推荐</div>
+  </div>
+</div>
+
+</div>
+</div>
+</section>
+<!-- 创作者详情弹窗 (Overlay) -->
+<section class="cd-section" id="creatorDetailSection">
+<div class="cd-overlay" onclick="closeCreatorDetail()"></div>
+<div class="cd-panel">
+
+<!-- 顶部返回 -->
+<div class="cd-backbar">
+  <button class="cd-back-btn" onclick="closeCreatorDetail()">
+    <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    返回
+  </button>
+</div>
+
+<!-- 主双栏 -->
+<div class="cd-main">
+
+<!-- 左栏 72% -->
+<div class="cd-left">
+  <div class="cd-left-title" id="cdLeftTitle">TA的作品</div>
+  <div class="cd-works-grid" id="cdWorksGrid"></div>
+</div>
+
+<!-- 右栏 28% 粘性边栏 -->
+<div class="cd-right">
+  <div class="cd-sidebar">
+    <div class="cd-sidebar-avatar" id="cdSidebarAvatar">M</div>
+    <div class="cd-sidebar-name" id="cdSidebarName">创作者</div>
+    <div class="cd-sidebar-role" id="cdSidebarRole">设计师</div>
+    <div class="cd-sidebar-stats">
+      <div class="cd-sidebar-stat">
+        <div class="cd-sidebar-stat-num" id="cdStatWorks">0</div>
+        <div class="cd-sidebar-stat-label">作品</div>
+      </div>
+      <div class="cd-sidebar-stat">
+        <div class="cd-sidebar-stat-num" id="cdStatFollowers">0</div>
+        <div class="cd-sidebar-stat-label">粉丝</div>
+      </div>
+      <div class="cd-sidebar-stat">
+        <div class="cd-sidebar-stat-num" id="cdStatLikes">0</div>
+        <div class="cd-sidebar-stat-label">获赞</div>
+      </div>
+    </div>
+    <button class="cd-sidebar-follow" onclick="event.stopPropagation();toggleFollow(this)">+ 关注</button>
+    <div class="cd-sidebar-desc" id="cdSidebarDesc">这位创作者还没有介绍自己</div>
+  </div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- 编辑作品弹窗 (Overlay) -->
+<section class="ew-section" id="editWorkSection">
+<div class="ew-overlay" onclick="closeEditWork()"></div>
+<div class="ew-panel">
+
+<!-- 顶部返回 -->
+<div class="ew-backbar">
+  <button class="ew-back-btn" onclick="closeEditWork()">
+    <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    返回
+  </button>
+</div>
+
+<!-- 表单 -->
+<div class="ew-form-wrap">
+  <div class="ew-form-title">编辑作品</div>
+
+  <div class="ew-field">
+    <label>作品名</label>
+    <input id="ewInputTitle" type="text" placeholder="输入作品名称">
+  </div>
+
+  <div class="ew-field">
+    <label>描述</label>
+    <textarea id="ewInputDesc" placeholder="输入作品描述"></textarea>
+  </div>
+
+  <div class="ew-field">
+    <label>价格</label>
+    <input id="ewInputPrice" type="number" placeholder="0 = 免费" min="0">
+  </div>
+
+  <div class="ew-field">
+    <label>标签（逗号分隔）</label>
+    <input id="ewInputTags" type="text" placeholder="例如: UI, 品牌, 插画">
+  </div>
+
+  <div class="ew-actions">
+    <button class="ew-btn-cancel" onclick="closeEditWork()">取消</button>
+    <button class="ew-btn-save" id="ewBtnSave" onclick="saveEditWork()">保存</button>
+  </div>
+</div>
+
+</div>
+</section>
+</main>
+
+<!-- 第四页: 创作者主页 -->
+<section class="creator-section reveal">
+<div class="section-inner">
+<div class="cs-header">
+<div class="cs-title">创作者</div>
+<p class="cs-sub">发现优秀的创作者</p>
+</div>
+<div class="creator-grid reveal-stagger" id="creatorGrid">
+</div>
+</div>
+</section>
+
+<!-- 第五页: 意见箱 -->
+<section class="feedback-section reveal">
+<h2>意见箱</h2>
+<p class="fb-sub">你的每一条反馈都在帮助我们把产品做得更好</p>
+<form class="fb-form">
+<label for="feedbackText">你想说点什么？</label>
+<textarea id="feedbackText" placeholder="写下你的建议、想法或遇到的问题…"></textarea>
+<button type="submit">提交反馈</button>
+</form>
+</section>
+
+<!-- 第六页: 关于我们的一封信 -->
+<section class="letter-section reveal">
+<div class="letter-body">
+<div class="letter-salute">亲爱的朋友，</div>
+<div class="letter-headline">一封关于我们的信</div>
+<p class="letter-text">我们是一个由设计师和开发者组成的小团队，怀着同一个信念出发：好的工具不应该复杂。从第一行代码到现在的产品形态，我们始终坚持做减法——去掉多余的装饰，保留真正重要的功能。</p>
+<p class="letter-text">我们相信，好的设计不是在页面上堆满东西，而是让用户一眼就知道该做什么。这也是 Vibe Market 一直以来的设计哲学：每个像素都有它的意义，每个交互都经过反复推敲。</p>
+<p class="letter-text">未来我们会继续倾听用户的声音，让产品变得更简洁、更高效、更有人情味。如果你有任何想法，欢迎通过上面的意见箱告诉我们。</p>
+<div class="letter-signature">
+<div class="ls-name">Vibe Market 团队</div>
+<div class="ls-role">2025 · 用心做好产品</div>
+</div>
+</div>
+</section>
+
+<!-- 我的作品页 (创作者个人管理) -->
+<section class="creator-works-section reveal">
+
+<!-- 顶部: 退出登录按钮 + 用户信息 -->
+<div class="cw-top-bar" id="cwTopBar">
+  <div class="cw-user-area">
+    <div class="cw-user-avatar" id="cwUserAvatar" style="background:linear-gradient(135deg,#CFFF55,#A8D932);color:#1a1a1a">D</div>
+    <span class="cw-user-name" id="cwUserName">戴某</span>
+  </div>
+  <div class="cw-codes-entry" id="cwCodesEntry" onclick="showMyCodesModal()">
+    <span class="cce-icon">🎫</span>
+    <span>我的验证码</span>
+    <span class="cce-count" id="cceCodeCount">0</span>
+  </div>
+  <button class="cw-logout-btn" onclick="handleLogout()">
+    <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    退出登录
+  </button>
+</div>
+
+<!-- 未登录提示 -->
+<div class="cw-login-prompt" id="cwLoginPrompt" style="display:none">
+  <div class="cw-lp-icon">🔐</div>
+  <div class="cw-lp-text">请先登录</div>
+  <div class="cw-lp-sub">登录后即可管理你的作品，查看获赞数据</div>
+  <button class="cw-lp-btn" onclick="showLoginModal()">去登录</button>
+</div>
+
+<!-- 已登录后显示的内容 -->
+<div id="cwLoggedInArea">
+<div class="cw-profile">
+<div class="cw-avatar" id="cwAvatar" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">D</div>
+<div class="cw-info">
+<div class="cw-name" id="cwName">戴某</div>
+<div class="cw-role" id="cwRole">全栈设计师 · UI 动效</div>
+<div class="cw-stats">
+<div class="cw-stat"><div class="cw-stat-num" id="cwWorkCount">0</div><div class="cw-stat-label">作品数</div></div>
+<div class="cw-stat"><div class="cw-stat-num" id="cwLikeCount">0</div><div class="cw-stat-label">获赞数</div></div>
+<div class="cw-stat"><div class="cw-stat-num" id="cwCodeCount">0</div><div class="cw-stat-label">剩余验证码</div></div>
+</div>
+</div>
+</div>
+<div class="cw-toolbar">
+<a href="javascript:void(0)" class="cw-btn-upload" onclick="var t=document.querySelector('.nav-tab[onclick*=\\'/upload\\']');if(t)selectTab(t,'/upload')">
+<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+上传新作品
+</a>
+<div class="cw-filter">
+<button class="cw-filter-btn active" onclick="filterMyWorks(this,'all')">全部</button>
+<button class="cw-filter-btn" onclick="filterMyWorks(this,'published')">已发布</button>
+<button class="cw-filter-btn" onclick="filterMyWorks(this,'draft')">草稿</button>
+</div>
+</div>
+<div class="cw-works-list" id="cwWorksList"></div>
+<div class="cw-empty" id="cwEmpty" style="display:none">
+<div class="cw-empty-icon">📭</div>
+<div class="cw-empty-text">还没有作品，去上传第一个吧</div>
+</div>
+<div class="cw-codes-bar">
+<span class="cw-codes-label">验证码</span>
+<span class="cw-codes-value" id="cwCodesUsed">3 / 10</span>
+<div class="cw-codes-progress"><div class="cw-codes-fill" id="cwCodesFill" style="width:30%"></div></div>
+<span class="cw-codes-label">剩余 <span id="cwCodesRemain" style="color:#CFFF55;font-weight:600">7</span></span>
+</div>
+</div>
+
+<!-- 管理面板（仅管理员可见） -->
+<div class="cw-admin-panel" id="cwAdminPanel" style="display:none">
+  <div class="cw-admin-title">⚙️ 管理后台</div>
+
+  <!-- 统计卡片 -->
+  <div class="cw-admin-stats">
+    <div class="cw-admin-stat-card">
+      <div class="cw-admin-stat-num" id="adminTotalWorks">0</div>
+      <div class="cw-admin-stat-label">总作品数</div>
+    </div>
+    <div class="cw-admin-stat-card">
+      <div class="cw-admin-stat-num" id="adminTotalLikes">0</div>
+      <div class="cw-admin-stat-label">总点赞</div>
+    </div>
+    <div class="cw-admin-stat-card">
+      <div class="cw-admin-stat-num" id="adminCodesUsed">0</div>
+      <div class="cw-admin-stat-label">验证码已用</div>
+    </div>
+    <div class="cw-admin-stat-card">
+      <div class="cw-admin-stat-num" id="adminCodesRemain">0</div>
+      <div class="cw-admin-stat-label">验证码剩余</div>
+    </div>
+  </div>
+
+  <!-- 验证码生成区 -->
+  <div class="cw-admin-section">
+    <div class="cw-admin-subtitle">📱 生成验证码</div>
+    <div class="cw-admin-code-btns">
+      <button class="cw-admin-code-btn" onclick="generateCodes('SPRT-1')">入门</button>
+      <button class="cw-admin-code-btn" onclick="generateCodes('SPRT-2')">进阶</button>
+      <button class="cw-admin-code-btn" onclick="generateCodes('SPRT-3')">专业</button>
+    </div>
+    <div class="cw-admin-code-result" id="cwAdminCodeResult">点击按钮生成验证码</div>
+  </div>
+
+  <!-- 交易记录 -->
+  <div class="cw-admin-section">
+    <div class="cw-admin-subtitle">📊 交易记录</div>
+    <div class="cw-admin-trade-sub">验证码购买与使用统计</div>
+    <div class="cw-admin-trade-table-wrap">
+      <table class="cw-admin-trade-table" id="cwAdminTradeTable">
+        <thead>
+          <tr>
+            <th>档位</th>
+            <th>前缀</th>
+            <th>费用</th>
+            <th>已生成</th>
+            <th>已使用</th>
+            <th>使用率</th>
+          </tr>
+        </thead>
+        <tbody id="cwAdminTradeBody"></tbody>
+        <tfoot id="cwAdminTradeFoot"></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- 作品列表 -->
+  <div class="cw-admin-section">
+    <div class="cw-admin-subtitle">📋 全部作品</div>
+    <div class="cw-admin-works-list" id="cwAdminWorksList"></div>
+  </div>
+</div>
+</section>
+
+<!-- 上传作品页 -->
+<section class="upload-section reveal">
+  <div class="up-title">上传作品</div>
+  <div class="up-sub">分享你的 Vibe 设计</div>
+  <div class="up-msg" id="upMsg"></div>
+  <form class="up-form" id="upForm" onsubmit="return handleUpload(event)">
+    <div class="up-field">
+      <label for="upTitle">作品标题 <span style="color:#dc2626">*</span></label>
+      <input type="text" id="upTitle" placeholder="给你的作品起个名字" required>
+    </div>
+    <div class="up-field">
+      <label for="upDesc">作品描述</label>
+      <textarea id="upDesc" placeholder="描述你的设计理念、创作过程…"></textarea>
+    </div>
+    <div class="up-field">
+      <label for="upCategory">分类</label>
+      <select id="upCategory">
+        <option value="visual">视觉设计</option>
+        <option value="digital-product">数字产品</option>
+        <option value="inspiration">灵感展示</option>
+      </select>
+    </div>
+    <div class="up-field">
+      <label for="upPrice">价格 (元)</label>
+      <input type="number" id="upPrice" placeholder="留空为免费" min="0" step="0.01">
+    </div>
+    <div class="up-field">
+      <label>作品文件 <span style="color:#dc2626">*</span></label>
+      <div class="up-file-zone" id="upFileZone" onclick="document.getElementById('upFile').click()">
+        <div class="up-upload-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="up-upload-text">点击或拖拽上传图片/视频</div>
+        <div class="up-upload-hint">支持 JPG、PNG、GIF、MP4</div>
+      </div>
+      <input type="file" accept="image/*,video/*" id="upFile" style="display:none">
+      <div class="up-file-preview" id="upFilePreview">
+        <img id="upPreviewImg" src="" alt="预览">
+        <span class="up-file-name" id="upFileName"></span>
+        <button type="button" class="up-file-remove" onclick="removeUploadedFile()" title="移除文件" aria-label="移除上传的文件">✕</button>
+      </div>
+    </div>
+    <div class="up-field">
+      <label for="upXianyu">闲鱼链接</label>
+      <input type="url" id="upXianyu" placeholder="https://m.tb.cn/…">
+    </div>
+    <div class="up-field">
+      <label for="upTags">标签 (逗号分隔)</label>
+      <input type="text" id="upTags" placeholder="UI, 动效, 暗色模式">
+    </div>
+    <button type="submit" class="up-btn">发布作品</button>
+  </form>
+</section>
+
+<!-- ===== FAQ 页面 ===== -->
+<section class="faq-section reveal">
+<div class="faq-inner">
+  <div class="faq-title">常见问题</div>
+  <div class="faq-sub">你可能想知道的</div>
+  <div class="faq-list">
+    <!-- Q1 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        如何购买验证码？
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><p>去<a href="javascript:void(0)" onclick="event.stopPropagation();var t=document.querySelector('.nav-tab[onclick*=\\'/pricing\\']');if(t)selectTab(t,'/pricing')">定价页</a>选择方案 → 跳转闲鱼购买即可。</p></div>
+    </div>
+    <!-- Q2 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        上传作品有什么要求？
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><p>作品必须为原创设计，图片清晰，格式支持 JPG、PNG、GIF 或 MP4。</p></div>
+    </div>
+    <!-- Q3 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        作品审核需要多久？
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><p>审核通常在24小时内完成，我们会尽快处理每一份投稿。</p></div>
+    </div>
+    <!-- Q4 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        如何联系客服？
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><p>你可以通过<a href="javascript:void(0)" onclick="event.stopPropagation();var t=document.querySelector('.nav-tab[onclick*=\\'/feedback\\']');if(t)selectTab(t,'/feedback')">意见箱</a>反馈，或通过闲鱼私信联系我们。</p></div>
+    </div>
+    <!-- Q5 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        验证码有什么用？
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><p>验证码用于上架验证，确保交易安全。每次上架作品需要消耗一个验证码。</p></div>
+    </div>
+    <!-- Q6 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        免费用户可以上传几个作品？
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><p>免费用户最多可以上传3个作品。升级付费方案后可获得更多上传额度。</p></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== 隐私政策页面 ===== -->
+<section class="privacy-section reveal">
+<div class="privacy-inner">
+  <div class="privacy-title">隐私政策</div>
+  <div class="privacy-sub">我们如何保护你的数据</div>
+  <div class="privacy-block">
+    <div class="pb-num">01</div>
+    <div class="pb-title">信息收集</div>
+    <div class="pb-text">我们收集的信息包括：用户名、联系方式（如邮箱）、以及你上传的作品信息（标题、描述、文件）。我们只收集为你提供正常服务所必需的信息。</div>
+  </div>
+  <div class="privacy-block">
+    <div class="pb-num">02</div>
+    <div class="pb-title">信息使用</div>
+    <div class="pb-text">你的信息用于平台展示（作品公开显示）、交易核对（验证码消耗记录）、以及客服沟通（回复你的反馈和问题）。我们不会将你的信息用于其他用途。</div>
+  </div>
+  <div class="privacy-block">
+    <div class="pb-num">03</div>
+    <div class="pb-title">信息保护</div>
+    <div class="pb-text">我们采用加密存储技术保护你的数据安全。我们承诺不向任何第三方泄露你的个人信息，除非法律法规要求。</div>
+  </div>
+  <div class="privacy-block">
+    <div class="pb-num">04</div>
+    <div class="pb-title">用户权利</div>
+    <div class="pb-text">你可以随时修改个人资料，也可以申请删除账号。删除账号后，你的所有作品和个人信息将从平台移除。</div>
+  </div>
+  <div class="privacy-block">
+    <div class="pb-num">05</div>
+    <div class="pb-title">联系我们</div>
+    <div class="pb-text">如有任何隐私相关问题，欢迎通过意见箱或闲鱼私信与我们联系。我们会在48小时内回复你。</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== 404 页面 ===== -->
+<section class="notfound-section reveal">
+<div class="nf-inner">
+  <div class="nf-code">404</div>
+  <div class="nf-headline">页面未找到</div>
+  <div class="nf-desc">你访问的页面不存在或已被移除</div>
+  <a href="javascript:void(0)" class="nf-btn" onclick="var t=document.querySelector('.nav-tab.active,.nav-tab:first-child');if(t)selectTab(t,'/')">返回首页</a>
+</div>
+</section>
+
+<!-- ===== 管理后台（独立页面，仅管理员可见） ===== -->
+<section class="admin-section reveal">
+<div class="admin-header">
+  <div class="admin-title">⚙️ 管理后台</div>
+  <button class="admin-exit-btn" onclick="selectTab(document.querySelector('.nav-tab'),'/')">← 退出管理</button>
+</div>
+
+<div class="cw-admin-panel" id="cwAdminPanel2" style="border-top:none;margin-top:0;padding-top:0">
+  <!-- 统计卡片 -->
+  <div class="cw-admin-stats">
+    <div class="cw-admin-stat-card">
+      <div class="cw-admin-stat-num" id="adminTotalWorks2">0</div>
+      <div class="cw-admin-stat-label">总作品数</div>
+    </div>
+    <div class="cw-admin-stat-card">
+      <div class="cw-admin-stat-num" id="adminTotalLikes2">0</div>
+      <div class="cw-admin-stat-label">总点赞</div>
+    </div>
+    <div class="cw-admin-stat-card">
+      <div class="cw-admin-stat-num" id="adminCodesUsed2">0</div>
+      <div class="cw-admin-stat-label">验证码已用</div>
+    </div>
+    <div class="cw-admin-stat-card">
+      <div class="cw-admin-stat-num" id="adminCodesRemain2">0</div>
+      <div class="cw-admin-stat-label">验证码剩余</div>
+    </div>
+  </div>
+
+  <!-- 验证码生成区 -->
+  <div class="cw-admin-section">
+    <div class="cw-admin-subtitle">📱 生成验证码</div>
+    <div class="cw-admin-code-btns">
+      <button class="cw-admin-code-btn" onclick="generateCodes2('SPRT-1')">入门</button>
+      <button class="cw-admin-code-btn" onclick="generateCodes2('SPRT-2')">进阶</button>
+      <button class="cw-admin-code-btn" onclick="generateCodes2('SPRT-3')">专业</button>
+    </div>
+    <div class="cw-admin-code-result" id="cwAdminCodeResult2">点击按钮生成验证码</div>
+  </div>
+
+  <!-- 交易记录 -->
+  <div class="cw-admin-section">
+    <div class="cw-admin-subtitle">📊 交易记录</div>
+    <div class="cw-admin-trade-sub">验证码购买与使用统计</div>
+    <div class="cw-admin-trade-table-wrap">
+      <table class="cw-admin-trade-table" id="cwAdminTradeTable2">
+        <thead>
+          <tr>
+            <th>档位</th>
+            <th>前缀</th>
+            <th>费用</th>
+            <th>已生成</th>
+            <th>已使用</th>
+            <th>使用率</th>
+          </tr>
+        </thead>
+        <tbody id="cwAdminTradeBody2"></tbody>
+        <tfoot id="cwAdminTradeFoot2"></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- 作品列表 -->
+  <div class="cw-admin-section">
+    <div class="cw-admin-subtitle">📋 全部作品</div>
+    <div class="cw-admin-works-list" id="cwAdminWorksList2"></div>
+  </div>
+
+  <!-- 意见箱反馈 -->
+  <div class="cw-admin-section">
+    <div class="cw-admin-subtitle">💬 用户反馈</div>
+    <div class="cw-admin-feedback-list" id="cwAdminFeedbackList2">
+      <div style="color:#999;text-align:center;padding:20px">加载中…</div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<script src="app.js"></script>
+</body>
+</html>

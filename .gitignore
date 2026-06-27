@@ -1,0 +1,29 @@
+# 依赖
+node_modules/
+
+# 环境配置 (包含敏感信息)
+.env
+
+# 数据库文件
+data/*.db
+data/*.db.tmp
+data/backups/
+
+# 用户上传的媒体文件
+public/uploads/
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+
+# 日志
+*.log
+logs/
+
+# 嵌套的 git 仓库（无用目录）
+1/
+vib/

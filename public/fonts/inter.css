@@ -1,0 +1,38 @@
+/* Inter — 自托管 (Latin subset, woff2)
+   覆盖: 300, 400, 500, 600, 700 五个字重
+   中文回退: PingFang SC / Microsoft YaHei */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src: url(./fonts/inter-latin-300-normal.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(./fonts/inter-latin-400-normal.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(./fonts/inter-latin-500-normal.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(./fonts/inter-latin-600-normal.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(./fonts/inter-latin-700-normal.woff2) format('woff2');
+}
